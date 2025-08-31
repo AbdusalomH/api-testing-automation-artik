@@ -4,14 +4,11 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import models.AdminUserModel;
+import models.UserLoginRequestModel;
 import requests.UserLoginRequester;
 
 import java.util.List;
-
-import static io.restassured.RestAssured.given;
 
 public class RequestSpecs {
 
@@ -28,14 +25,26 @@ public class RequestSpecs {
     }
 
     public static RequestSpecification adminSpecs() {
-        AdminUserModel adminUserModel = AdminUserModel.builder().password("admin").username("admin").build();
+        UserLoginRequestModel adminUserModel = UserLoginRequestModel.builder().password("admin").username("admin").build();
 
         String token = new UserLoginRequester(RequestSpecs.unauth(), ResponseSpecs.entityWasSuccess())
                 .requester(adminUserModel)
                 .extract()
                 .header("Authorization");
-        System.out.println("token "+ token);
         return defaultRequestBuilder().addHeader("Authorization", token).build();
     }
 
+
+    public static RequestSpecification authUser(String username, String password) {
+        UserLoginRequestModel userLoginRequestModel = UserLoginRequestModel.builder()
+                .username(username)
+                .password(password)
+                .build();
+        String token = new UserLoginRequester(RequestSpecs.unauth(), ResponseSpecs.entityWasSuccess())
+                .requester(userLoginRequestModel)
+                .extract()
+                .header("Authorization");
+
+        return defaultRequestBuilder().addHeader("Authorization", token).build();
+    }
 }
