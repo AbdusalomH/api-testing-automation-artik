@@ -20,7 +20,7 @@ public class CreateAccountTest extends BaseTest {
                 (RequestSpecs.authUser(createUserRequestModel.getUsername(),
                         createUserRequestModel.getPassword()),
                         Endpoint.ACCOUNTS,
-                        ResponseSpecs.entityWasSuccess())
+                        ResponseSpecs.entityWasCreated())
                 .post(null);
 
         CreateAccountResponseModel createdAccount = UserBalanceProvider
