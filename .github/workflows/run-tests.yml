@@ -23,7 +23,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-            
+
       - name: Set up services
         run: cd infra/docker_compose && bash restart_docker.sh && cd ../..
 
@@ -34,31 +34,33 @@ jobs:
           UIBASEURL: http://frontend
 
       - name: Load Test Report History
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         if: always()
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Build Test Report
-        uses: simple-elf/allure-report-action@v1.7
+      - name: Prepare folder for this run
         if: always()
-        with:
-            gh_pages: gh-pages
-            allure_results: target/allure-results
-            allure_history: allure-history
+        run: |
+          mkdir -p gh-pages/Run_${GITHUB_RUN_NUMBER}
 
-      - name: Publish Test Report
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Build Allure Report for this run
         if: always()
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: allure-history
+        run: |
+          allure generate target/allure-results --output gh-pages/Run_${GITHUB_RUN_NUMBER} --clean
+          cp -r allure-history/* gh-pages/Run_${GITHUB_RUN_NUMBER}/ || true
+
+      - name: Commit and push Allure report
+        if: always()
+        run: |
+          cd gh-pages
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add Run_${GITHUB_RUN_NUMBER}
+          git commit -m "Add Allure report for run #${GITHUB_RUN_NUMBER}" || echo "Nothing to commit"
+          git push origin gh-pages
 
       - name: Clean up services
         if: always()
         run: cd infra/docker_compose && docker compose down
-
-
-
