@@ -17,7 +17,7 @@ public class ValidatedCrudRequester <T extends BaseModel> extends HTTPRequest im
 
     @Override
     public T post(BaseModel baseModel) {
-        return (T) crudRequester.post(baseModel).extract().as(endpoint.getResponseModel());
+        return (T) crudRequester.post(baseModel).extract().as(endpoint.getResponseClass());
     }
 
     @Override
