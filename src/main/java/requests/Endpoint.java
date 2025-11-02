@@ -1,11 +1,7 @@
 package requests;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import models.*;
 
-@AllArgsConstructor
-@Getter
 public enum Endpoint {
 
     LOGIN(
@@ -45,7 +41,24 @@ public enum Endpoint {
 
 
     private final String url;
-    private final Class<? extends BaseModel> RequestModel;
-    private final Class<? extends BaseModel> ResponseModel;
+    private final Class<? extends BaseModel> requestModel;
+    private final Class<? extends BaseModel> responseModel;
 
+    Endpoint(String url, Class<? extends BaseModel> requestModel, Class<? extends BaseModel> responseModel) {
+        this.url = url;
+        this.requestModel = requestModel;
+        this.responseModel = responseModel;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Class<?> getRequestClass() {
+        return requestModel;
+    }
+
+    public Class<?> getResponseClass() {
+        return responseModel;
+    }
 }
