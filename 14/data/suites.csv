@@ -1,5 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Sun Nov 02 13:44:47 GMT 2025","Sun Nov 02 13:44:50 GMT 2025","2901","","api.CreateAccountTest","","api.CreateAccountTest","userCanCreateAccount","userCanCreateAccount()",""
-"passed","Sun Nov 02 13:44:47 GMT 2025","Sun Nov 02 13:44:49 GMT 2025","2140","","api.UserLoginTest","","api.UserLoginTest","userAbleToLogin","userAbleToLogin()",""
-"passed","Sun Nov 02 13:44:47 GMT 2025","Sun Nov 02 13:44:50 GMT 2025","3184","","api.AdminCreateUserTest","","api.AdminCreateUserTest","adminCreatesNewUser","adminCreatesNewUser()",""
-"passed","Sun Nov 02 13:44:47 GMT 2025","Sun Nov 02 13:44:49 GMT 2025","2511","","api.UserAccountTest","","api.UserAccountTest","userCanCreateAccount","userCanCreateAccount()",""
