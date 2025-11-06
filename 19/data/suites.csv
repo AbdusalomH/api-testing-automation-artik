@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3351","adminCreatesNewUser()","","Thu Nov 06 19:59:14 UTC 2025","passed","Thu Nov 06 19:59:17 UTC 2025","","api.AdminCreateUserTest","api.AdminCreateUserTest","adminCreatesNewUser"
+"","3027","userCanCreateAccount()","","Thu Nov 06 19:59:14 UTC 2025","failed","Thu Nov 06 19:59:17 UTC 2025","","api.CreateAccountTest","api.CreateAccountTest","userCanCreateAccount"
+"","2128","userAbleToLogin()","","Thu Nov 06 19:59:14 UTC 2025","passed","Thu Nov 06 19:59:16 UTC 2025","","api.UserLoginTest","api.UserLoginTest","userAbleToLogin"
+"","2515","userCanCreateAccount()","","Thu Nov 06 19:59:14 UTC 2025","passed","Thu Nov 06 19:59:16 UTC 2025","","api.UserAccountTest","api.UserAccountTest","userCanCreateAccount"
