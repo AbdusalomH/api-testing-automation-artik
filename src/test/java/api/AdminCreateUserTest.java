@@ -15,6 +15,7 @@ public class AdminCreateUserTest extends BaseTest {
     @Test
     public void adminCreatesNewUser() {
 
+
         CreateUserRequestModel createUserModel = CreateUserRequestModel.builder().username(RandomData.getRandomUsername()).password(RandomData.getRandomPassword()).role(UserRole.USER.toString()).build();
         CreatUserResponseModel creatUserResponseModel = new ValidatedCrudRequester<CreatUserResponseModel>(RequestSpecs.adminSpecs(), Endpoint.ADD_USER, ResponseSpecs.entityWasCreated()).post(createUserModel);
 
